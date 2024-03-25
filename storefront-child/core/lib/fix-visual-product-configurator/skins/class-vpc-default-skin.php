@@ -63,7 +63,7 @@ class VPC_Default_Skin {
                     echo  $preview_html;
                 ?>
                 
-                <?php do_action("vpc_after_preview_area", $config) ?>
+                <?php do_action("vpc_after_preview_area", $config, $this->product->id, $this->config->id) ?>
             </div>
             <div>
                 <?php do_action("vpc_container_end", $config) ?>
@@ -120,6 +120,10 @@ class VPC_Default_Skin {
                     _e("No option detected for the component. You need at least one option per component.", "vpc");
                 else
                 {
+                    $product_id = $this->product_id;//get_query_var("vpc-pid", false);
+                    //WAD compatibility
+                    $discount_rate=  vpc_get_discount_rate($product_id);
+                    
                     foreach ($options as $option_index => $option) {
                         if ($option["name"] == "") {
                             if ($option_index == count($options) - 1) {
@@ -161,6 +165,7 @@ class VPC_Default_Skin {
                             $checked = "checked='checked' data-default='1'";
 
                         $price = get_proper_value($option, "price", 0);
+                        $price=$price-$price*$discount_rate;
                         $linked_product = get_proper_value($option, "product", false);
                         if ($linked_product) {
                             $product = new WC_Product($linked_product);

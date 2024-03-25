@@ -144,7 +144,7 @@ tbody.ui-sortable
     max-width: 60px;
 }
 
-table#vpc-config-components-table tr td:first-child,.omodal table tr td:nth-child(2) { display: none; }
+table#vpc-config-components-table tr td:first-child { display: none; }
 
 .vpc-addon-list{
     background-color:rgba(250,250,250,0.76);

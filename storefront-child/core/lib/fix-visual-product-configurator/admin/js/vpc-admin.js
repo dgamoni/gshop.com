@@ -471,30 +471,13 @@
         $(document).on('change', '.vpc-cname, .vpc-option-group, .vpc-option-name', function () {
             wvpc_reload_conditionnal_rule_panel();
         });
+        
         $(document).on("click", ".add-rf-row", function (e) {
             setTimeout(function () {
                 update_components_id();
                 update_options_id();
             }, 200);
         });
-
-        
-        var all_products=[];
-        if (typeof products !== 'undefined'){
-        $.each(products, function (i, val)
-        {
-            all_products.push({ value:val, data:i});
-    });
-    
-        $(document).on("click", ".products_selects", function (e) {
-            $(this).autocomplete({
-                source: all_products,
-                onSelect: function (product) {
-                    $(this).parent().parent().find('.vpc-product-id').val(product.data);
-                }
-            });
-        });
-        }
     });
 
 })(jQuery);

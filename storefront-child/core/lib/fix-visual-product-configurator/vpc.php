@@ -31,7 +31,7 @@ if ( ! defined( 'WPINC' ) ) {
 }
 
 //define('VPC_URL', plugins_url('/', __FILE__));
-define('VPC_URL', CORE_URL . '/lib/visual-product-configurator/');
+define('VPC_URL', CORE_URL . '/lib/fix-visual-product-configurator/');
 define('VPC_DIR', dirname(__FILE__));
 define('VPC_MAIN_FILE', 'visual-product-configurator/vpc.php' );
 define('VPC_VERSION', '2.3.9' );

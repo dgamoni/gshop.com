@@ -73,8 +73,8 @@ class VPC_Admin {
         wp_enqueue_style($this->plugin_name, CORE_URL_VPC . 'admin/css/vpc-admin.css', array(), $this->version, 'all');
         wp_enqueue_style("o-flexgrid", CORE_URL_VPC . 'admin/css/flexiblegs.css', array(), $this->version, 'all');
         wp_enqueue_style("o-ui", CORE_URL_VPC . 'admin/css/UI.css', array(), $this->version, 'all');
-        wp_enqueue_style("o-tooltip", CORE_URL_VPC . 'public/css/tooltip.min.css', array(), $this->version, 'all');
-        wp_enqueue_style("o-bs-modal-css", CORE_URL_VPC . 'admin/js/modal/modal.min.css', array(), $this->version, 'all');
+        wp_enqueue_style("o-tooltip",  CORE_URL_VPC . 'public/css/tooltip.min.css', array(), $this->version, 'all');
+        wp_enqueue_style("o-bs-modal-css",  CORE_URL_VPC . 'admin/js/modal/modal.min.css', array(), $this->version, 'all');
     }
 
     /**
@@ -100,12 +100,10 @@ class VPC_Admin {
         wp_enqueue_script('jquery-ui-core');
         wp_enqueue_script("o-admin", CORE_URL_VPC . 'admin/js/o-admin.js', array('jquery', 'jquery-ui-sortable'), $this->version, false);
         wp_localize_script("o-admin", 'home_url', o_get_medias_root_url("/"));
-        
         wp_enqueue_script("o-tooltip", CORE_URL_VPC . 'public/js/tooltip.min.js', array('jquery'), $this->version, false);
 //        wp_enqueue_script("o-lazyload", VPC_URL . 'admin/js/jquery.lazyload.min.js', array('jquery'), $this->version, false);
         wp_enqueue_script('o-modal-js', CORE_URL_VPC . 'admin/js/modal/modal.min.js', array('jquery'), false, false);
         wp_enqueue_script("jquery-serializejson", CORE_URL_VPC . 'public/js/jquery.serializejson.min.js', array('jquery'), $this->version, false);
-        wp_enqueue_script('o-autocomplete-js', CORE_URL_VPC . 'admin/js/jquery.autocomplete.min.js', array('jquery'), false, false);
 
 //Set string translation for js scripts
         $string_translations = array(

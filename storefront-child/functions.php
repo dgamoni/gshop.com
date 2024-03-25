@@ -194,11 +194,11 @@ function get_new_cut() {
 	function storefront_product_categories( $args ) {
 		if ( storefront_is_woocommerce_activated() ) {
 			$args = apply_filters( 'storefront_product_categories_args', array(
-				'limit' 			=> 3,
-				'columns' 			=> 3,
+				'limit' 			=> 4,
+				'columns' 			=> 4,
 				'child_categories' 	=> 0,
 				'orderby' 			=> 'name',
-				//'title'				=> __( 'Product categories', 'storefront' ),
+				// 'title'				=> __( 'Product categories', 'storefront' ),
 				'title'				=> __( 'Collection', 'storefront' ),
 			) );
 			echo '<section class="storefront-product-section storefront-product-categories" aria-label="Product Categories">';
@@ -214,20 +214,21 @@ function get_new_cut() {
 			// ) );
 
 
-			echo '<div class="woocommerce columns-3"><ul class="products">';
+			echo '<div class="woocommerce columns-4"><ul class="products">';
 			foreach (get_new_cut() as $key => $cat) {
 				if ($key ==0 ) {
 					$num = 'first';
 				}else if($key ==1) {
 					$num = '';
-				}else if ($key ==2) {
+				}else if ($key ==3) {
 					$num = 'last';
 				}
 				$params = array( 'width' => 330 , 'height' => 436);
 			    $thumbnail_id = get_woocommerce_term_meta( $cat->term_id, 'thumbnail_id', true ); 
 			    $image = wp_get_attachment_url( $thumbnail_id );
+			    //var_dump(get_term_link( $cat->term_id));
 				echo '<li class="product-category product '.$num.'">
-						<a href="'.get_term_link( $cat->term_id).'">
+						 <a href="'.get_term_link( $cat->term_id).'">
 							<img src="' . bfi_thumb( $image, $params ) . '"/>
 							<h3>'.$cat->name.' <mark class="count">('.$cat->category_count.')</mark></h3>
 						</a>
@@ -378,6 +379,7 @@ if ( ! function_exists( 'woocommerce_get_product_thumbnail' ) ) {
     }
 }
 
+
 /*
  * Hides the 'Free!' price notice
  */
@@ -387,3 +389,111 @@ add_filter( 'woocommerce_variation_free_price_html', 'hide_free_price_notice' );
 function hide_free_price_notice( $price ) {
   return '';
 }
+
+/* Add VAT FIELD */
+
+// Hook in WooCommerce checkout fields and add new field
+add_filter( 'woocommerce_checkout_fields' , 'add_field_to_checkout' );
+
+// Our hooked in function - $fields is passed via the filter!
+function add_field_to_checkout( $fields ) {
+
+$fields['billing']['billing_fieldname'] = array(
+    'label' => __('VAT number', 'woocommerce'),
+    'placeholder' => _x('Your VAT number', 'placeholder', 'woocommerce'),
+    'required' => false,
+    'class' => array('form-row-wide'),
+    'clear' => true
+  );
+
+return $fields;
+}
+
+//Add info on Admin
+function add_field_to_admin($order){
+  echo "<p><strong>VAT:</strong> " . $order->order_custom_fields['_billing_fieldname'][0] . "</p>";
+}
+
+add_action( 'woocommerce_admin_order_data_after_billing_address', 'add_field_to_admin', 10, 1 );
+
+
+// add customlogo svg
+function change_default_storefront_header() {
+	remove_action( 'storefront_header', 'storefront_site_branding', 20 );
+}
+add_action( 'wp_head', 'change_default_storefront_header' );
+
+add_action( 'storefront_header', 'storefront_site_branding_custom', 21 );
+function storefront_site_branding_custom() {
+	?>
+	<div class="site-branding">
+		<?php storefront_site_title_or_logo_custom(); ?>
+	</div>
+	<?php
+}
+function storefront_site_title_or_logo_custom( $echo = true ) {
+	// dgamoni
+		$html = '<a href="'.esc_url( home_url( '/' ) ).'" class="site-logo-link" rel="home" itemprop="url">';
+		$html .= '<img width="216" height="62" src="'. get_stylesheet_directory_uri().'/assets/img/logo.svg" class="custom-logo" alt="" itemprop="logo">';
+		$html .= '</a>';
+
+	if ( ! $echo ) {
+		return $html;
+	}
+
+	echo $html;
+}
+
+//add back to store button after cart
+add_action('woocommerce_cart_collaterals', 'themeprefix_back_to_store');
+function themeprefix_back_to_store() { ?>
+<div class="cart_totals-left">
+	<a class="button wc-backward" href="<?php echo get_permalink( wc_get_page_id( 'shop' ) ); ?>"><?php _e( 'Continue shopping', 'woocommerce' ) ?></a>
+</div>
+<?php
+}
+
+// fix v7
+
+// mini cart filter fragmen
+function my_child_theme_setup() {
+    remove_filter( 'woocommerce_add_to_cart_fragments', 'storefront_cart_link_fragment' );
+    add_filter( 'woocommerce_add_to_cart_fragments', 'storefront_cart_link_fragment_custom' );
+}
+add_action( 'after_setup_theme', 'my_child_theme_setup' );
+
+function storefront_cart_link_fragment_custom( $fragments ) {
+	global $woocommerce;
+
+	ob_start();
+	storefront_cart_link_new();
+	$fragments['a.cart-contents'] = ob_get_clean();
+
+	ob_start();
+	storefront_handheld_footer_bar_cart_link();
+	$fragments['a.footer-cart-contents'] = ob_get_clean();
+
+	return $fragments;
+}
+
+function storefront_cart_link_new() {
+	?>
+		<a class="cart-contents" href="<?php echo esc_url( WC()->cart->get_cart_url() ); ?>" title="<?php esc_attr_e( 'View your shopping cart', 'storefront' ); ?>">
+			<span class="amount">
+				<?php echo wp_kses_data( WC()->cart->get_cart_subtotal() ); ?>
+			</span> <span class="count"><?php echo wp_kses_data( sprintf( _n( '%d item', '%d items', custom_count(), 'storefront' ), custom_count() ) );?></span>
+		</a>
+	<?php
+}
+
+function custom_count() {
+    $counnt =0;
+	foreach ( WC()->cart->get_cart() as $cart_item_key => $cart_item ) {
+		if ( !$cart_item['vpc-is-secondary-product'] ) :
+			$counnt++;
+		endif;
+	}
+	return $counnt;
+}
+
+

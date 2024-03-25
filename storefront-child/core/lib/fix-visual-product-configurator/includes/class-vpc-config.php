@@ -278,15 +278,12 @@ class VPC_Config {
             }
             
             $option_product=array(
-                'title' => __('Product ', 'vpc'),
-                'type' => 'text',
-                'name' => 'product_name',
-                'class' =>'products_selects'
-            );
-            $product_id=array(
-                'title' => __('ID', 'vpc'),
+                'title' => __('Product / variation ID', 'vpc'),
                 'name' => 'product',
-                'type' => 'text'
+                                'type' => 'select',
+                'options' => $products,
+                'tip' => 'yes'
+
             );
             $option_default=array(
                 'title' => __('Default', 'vpc'),
@@ -305,7 +302,7 @@ class VPC_Config {
                 'name' => 'options',
                 'type' => 'repeatable-fields',
                 'class' => 'striped',
-                'fields' => array($option_id,$product_id, $option_group, $option_name, $option_desc, $o_icon, $o_image, $option_price, $option_product, $option_default),
+                'fields' => array($option_id, $option_group, $option_name, $option_desc, $o_icon, $o_image, $option_price, $option_product, $option_default),
                 'desc' => __('Component options', 'vpc'),
                 'row_class'=>'vpc-option-row',
                 'popup'=> true,
@@ -338,7 +335,6 @@ class VPC_Config {
                 </div>
                 <script>
                     var o_rows_tpl=<?php echo json_encode($o_row_templates);?>;
-                    var products=<?php echo json_encode($products);?>;
                 </script>
             <?php
     }
@@ -792,33 +788,6 @@ class VPC_Config {
            $new_metas=  array_replace($old_metas, $_POST[$meta_key]);
 //           var_dump($new_metas);
            update_post_meta($root_id, $meta_key, $new_metas);
-       }
-   }
-   
-    function set_related_product_name(){
-        $posts=get_posts(array('post_type'=>'vpc-config'));
-        $new_datas=array();
-        foreach($posts as $post){
-           $new_datas=get_post_meta($post->ID,'vpc-config',true);
-           $configs=get_post_meta($post->ID,'vpc-config',true);
-           if(isset($configs['components'])){
-               $components=$configs['components'];
-               foreach($components as $comp_id=>$component){
-                   if(isset($component['options'])){
-                       $options=$component['options'];
-                       foreach($options as $option_id=>$option){
-                           if(isset($option['product']) && !empty($option['product'])){
-                               if(!isset($option['product_name']) || empty($option['product_name'])){
-                                    $product=get_post($option['product']);
-                                    $new_datas['components'][$comp_id]['options'][$option_id]['product_name']=$product->post_title;
-}
-                           }
-                       }
-                       
-                   }
-               }
-           }
-           update_post_meta($post->ID,'vpc-config',$new_datas);
        }
    }
 }

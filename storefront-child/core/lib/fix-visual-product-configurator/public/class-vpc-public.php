@@ -111,7 +111,7 @@ class VPC_Public {
             $product_id = $product;
 
         if (!$product_id)
-            $output = __("Looks like you're trying to access the configuration page directly. This page can only be accessed by clicking on the Build your own button from the product or the shop page.", "vpc");
+            $output = __("Looks like you're trying to access the configuration page directly. This page can only be accessed by clicking on the SHOP NOW button from the product or the shop page.", "vpc");
         else
             $output = $this->get_vpc_editor($product_id);
 
@@ -336,7 +336,7 @@ class VPC_Public {
             $style = "style='display:none;'";
 
         if ($wrap)
-            $design_url = "<a class='vpc-configure-button button' href='$design_url' data-id='$id' $style>" . __("Build your own", "vpc") . "</a>";
+            $design_url = "<a class='vpc-configure-button button' href='$design_url' data-id='$id' $style>" . __("SHOP NOW", "vpc") . "</a>";
 
 
         return $design_url;
@@ -375,7 +375,7 @@ class VPC_Public {
             $product_id = get_query_var("vpc-pid", false); //$wp_query->query_vars["vpc-pid"];
             $product_id=  apply_filters("vpc_configurator_product_id", $product_id);
             if (!$product_id)
-                $content.=__("Looks like you're trying to access the configuration page directly. This page can only be accessed by clicking on Build your own button from the product or the shop page.", "vpc");
+                $content.=__("Looks like you're trying to access the configuration page directly. This page can only be accessed by clicking on SHOP NOW button from the product or the shop page.", "vpc");
             else
                 $content.= $this->get_vpc_editor($product_id);
         }
@@ -633,7 +633,12 @@ class VPC_Public {
         $hide_secondary_product_in_cart = get_proper_value($vpc_settings, "hide-wc-secondary-product-in-cart", "Yes");
         if ($hide_secondary_product_in_cart=="Yes") {
             $_product = wc_get_product( $linked_product );
-            $option_price=$_product->get_price();
+            if(function_exists("wad_get_product_price"))
+            {
+                $option_price=wad_get_product_price($_product);
+            }
+            else
+                $option_price=$_product->get_price();
         }
         else
             $option_price=0;
@@ -653,7 +658,9 @@ class VPC_Public {
                 $option_price = $this->extract_option_field_from_config($option, $component, $original_config->settings, "price");
                 //We ignore the linked products prices since they're already added in the cart
                 if($linked_product)
+                {
                     $option_price=$this->get_product_linked_price($linked_product);
+                }
                 //We make sure we're not handling any empty priced option
                 if (empty($option_price))
                     $option_price = 0;

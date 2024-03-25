@@ -177,7 +177,6 @@ class Vpc {
                 $this->loader->add_action( 'save_post_product', $config, 'save_product_configuration');
                 $this->loader->add_action( 'woocommerce_save_product_variation', $config, 'save_variation_settings_fields');
                 $this->loader->add_action( 'save_post_vpc-template', $config, 'save_config');
-                $this->loader->add_action( 'init', $config, 'set_related_product_name' );
 //                $this->loader->add_action( 'woocommerce_product_write_panel_tabs',$config, 'get_product_tab_label');
 //                $this->loader->add_action( 'woocommerce_product_write_panels', $config, 'get_product_tab_data');
 
@@ -221,7 +220,7 @@ class Vpc {
                 
                 $this->loader->add_filter("woocommerce_cart_item_name", $plugin_public, "get_vpc_data", 99, 3);
                 $this->loader->add_action( 'woocommerce_before_calculate_totals', $plugin_public, 'get_cart_item_price', 10 );
-                $this->loader->add_filter( 'woocommerce_cart_item_price', $plugin_public, 'get_cart_item_html', 99, 3 );
+//                $this->loader->add_filter( 'woocommerce_cart_item_price', $plugin_public, 'get_cart_item_html', 99, 3 );
                 $this->loader->add_action( 'woocommerce_add_order_item_meta', $plugin_public, 'save_customized_item_meta',10,3);
                 $this->loader->add_filter('woocommerce_cart_item_thumbnail', $plugin_public, "get_vpc_data_image", 99, 3);
                 

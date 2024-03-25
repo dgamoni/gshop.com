@@ -73,6 +73,7 @@ function vpc_get_action_buttons($product_id) {
     $buttons = vpc_get_action_buttons_arr($product_id);
     ob_start();
     ?>
+    <!-- dgamoni -->
     <!-- <div class="vpc-action-buttons o-col xl-2-3"> -->
     <div class="vpc-action-buttons col xl-1-2 lg-2-3 md-1-1 sm-1-1">
         <div class="o-col xl-1-1">
@@ -443,4 +444,20 @@ function vpc_get_order_item_configuration($item)
     }
     
     return $original_config;
+}
+
+function vpc_get_discount_rate($product_id)
+{
+    $discount_rate=0;
+    //WAD compatibility
+    if(function_exists("wad_get_product_price"))
+    {
+        //Price without the discounts
+        $product_obj = wc_get_product($product_id);
+        $discounted_price=$product_obj->get_price();
+        $original_price=  wad_get_product_price($product_obj);
+        $discount_rate=1-$discounted_price/$original_price;
+    }
+    
+    return $discount_rate;
 }
