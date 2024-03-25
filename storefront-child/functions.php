@@ -194,12 +194,12 @@ function get_new_cut() {
 	function storefront_product_categories( $args ) {
 		if ( storefront_is_woocommerce_activated() ) {
 			$args = apply_filters( 'storefront_product_categories_args', array(
-				'limit' 			=> 4,
-				'columns' 			=> 4,
+				'limit' 			=> 3,
+				'columns' 			=> 3,
 				'child_categories' 	=> 0,
 				'orderby' 			=> 'name',
-				// 'title'				=> __( 'Product categories', 'storefront' ),
-				'title'				=> __( 'Collection', 'storefront' ),
+				//'title'				=> __( 'Product categories', 'storefront' ),
+				'title'				=> __( 'Kollekció', 'storefront' ),
 			) );
 			echo '<section class="storefront-product-section storefront-product-categories" aria-label="Product Categories">';
 			do_action( 'storefront_homepage_before_product_categories' );
@@ -214,21 +214,20 @@ function get_new_cut() {
 			// ) );
 
 
-			echo '<div class="woocommerce columns-4"><ul class="products">';
+			echo '<div class="woocommerce columns-3"><ul class="products">';
 			foreach (get_new_cut() as $key => $cat) {
 				if ($key ==0 ) {
 					$num = 'first';
 				}else if($key ==1) {
 					$num = '';
-				}else if ($key ==3) {
+				}else if ($key ==2) {
 					$num = 'last';
 				}
 				$params = array( 'width' => 330 , 'height' => 436);
 			    $thumbnail_id = get_woocommerce_term_meta( $cat->term_id, 'thumbnail_id', true ); 
 			    $image = wp_get_attachment_url( $thumbnail_id );
-			    //var_dump(get_term_link( $cat->term_id));
 				echo '<li class="product-category product '.$num.'">
-						 <a href="'.get_term_link( $cat->term_id).'">
+						<a href="'.get_term_link( $cat->term_id).'">
 							<img src="' . bfi_thumb( $image, $params ) . '"/>
 							<h3>'.$cat->name.' <mark class="count">('.$cat->category_count.')</mark></h3>
 						</a>
@@ -251,7 +250,7 @@ function storefront_featured_products( $args ) {
 				'columns' => 4,
 				'orderby' => 'date',
 				'order'   => 'desc',
-				'title'   => __( 'Highlights', 'storefront' ),
+				'title'   => __( 'Kiemelt termékek', 'storefront' ),
 			) );
 			echo '<section class="storefront-product-section storefront-featured-products" aria-label="Featured Products">';
 			do_action( 'storefront_homepage_before_featured_products' );
@@ -288,7 +287,7 @@ function homepage_news() {
 	if( $posts ): ?>
 
 		<div class="col-md-12 cat_event">
-	            	<h2>Next events</h2>
+	            	<h2>Következő események</h2>
 	            </div>
 
 			    <?php foreach( $posts as $post): ?>
@@ -379,7 +378,6 @@ if ( ! function_exists( 'woocommerce_get_product_thumbnail' ) ) {
     }
 }
 
-
 /*
  * Hides the 'Free!' price notice
  */
@@ -415,6 +413,7 @@ function add_field_to_admin($order){
 }
 
 add_action( 'woocommerce_admin_order_data_after_billing_address', 'add_field_to_admin', 10, 1 );
+
 
 
 // add customlogo svg
@@ -453,7 +452,6 @@ function themeprefix_back_to_store() { ?>
 <?php
 }
 
-// fix v7
 
 // mini cart filter fragmen
 function my_child_theme_setup() {
@@ -495,5 +493,3 @@ function custom_count() {
 	}
 	return $counnt;
 }
-
-

@@ -2,8 +2,6 @@ var VPC_CONFIG = (function ($, vpc_config) {
     'use strict';
     $(document).ready(function () {
 
-
-
         if (typeof vpc != 'undefined')
         {
             accounting.settings = {
@@ -26,16 +24,6 @@ var VPC_CONFIG = (function ($, vpc_config) {
         {
             if (typeof vpc == 'undefined')
                 return;
-        
-// dgamoni
-        if(window.matchMedia('(min-width: 768px)').matches) {
-                $("#vpc-sticky").sticky({
-                     topSpacing:0,
-                     bottomSpacing:606,
-                     getWidthFrom:'.vpc-sticky-wrap'
-                });
-        }
-
             $("#vpc-preview").html("");
             if($("#vpc-add-to-cart").data("price")){
                 if (vpc.decimal_separator == ',')

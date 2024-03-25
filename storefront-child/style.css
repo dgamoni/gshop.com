@@ -28,9 +28,6 @@ Images License: GNU General Public License v2 or later
 h1, h2, h3, h4, h5, h6, body, button, input, textarea {
 	font-family: 'Raleway', sans-serif;	
 }
-h2 {
-	font-weight: 600;
-}
 body {
 	font-size: 14px;
 }
@@ -172,14 +169,14 @@ input[type=text], input[type=email], select {
 	display: none;
 }
 .vpc-options input:checked + label.custom {
-    border: 3px solid #FED24D;
+     border: 3px solid #FED24D;
 }
 .vpc-options input:checked + label.custom:before {
     font-family: FontAwesome;
     /*content: "\f00c"!important;*/
     color: #23af03!important;
 	font-size: 18px;
-     content: inherit; /*dgamoni*/
+	content: inherit; /*dgamoni*/
 }
 .vpc-component-header {
     color: #000000!important;
@@ -197,7 +194,7 @@ input[type=text], input[type=email], select {
     border: 0px solid #D0D0D0!important;
 }
 #vpc-price-container {
-    /*height: 50px;*/
+    height: 50px;
     color: #000000!important;
     font-weight: bold;
     text-align: right;
@@ -278,30 +275,8 @@ input[type=text], input[type=email], select {
 a:focus, .button:focus, .button.alt:focus, .button.added_to_cart:focus, .button.wc-forward:focus, button:focus, input[type="button"]:focus, input[type="reset"]:focus, input[type="submit"]:focus {
        outline-color: inherit;
 }
-
-/* Change top bar css plugin */
-.woa-top-bar {
-    text-align: right;
-}
-.wpml-ls-legacy-list-horizontal {
-    border: none;
-    padding: 0;
-    clear: both;
-}
-.wpml-ls-legacy-list-horizontal a {
-    padding: 0px 0px 0px 10px;
-}
-li.wpml-ls-current-language a {
-	font-weight: 800!important;
-}
-/*dgamoni*/
 .sizing-info {
-    color: black;
-}
-
-/* Hide products count */
-.count {
-    display: none;
+	color: black;
 }
 
 /*configurator*/
@@ -350,10 +325,4 @@ li.wpml-ls-current-language a {
      position: relative;
      width: 100%;
     }
-}
-
-.storefront-featured-products ul.products li.product .price,
-.tax-product_cat ul.products li.product .price,
-.post-type-archive-product ul.products li.product .price {
-    display: none;
 }

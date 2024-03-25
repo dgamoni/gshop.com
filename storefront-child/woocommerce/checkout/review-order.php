@@ -39,9 +39,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 					?>
 					<tr class="<?php echo esc_attr( apply_filters( 'woocommerce_cart_item_class', 'cart_item', $cart_item, $cart_item_key ) ); ?>">
 						<td class="product-name">
-						<?php //var_dump( get_post_meta($cart_item['data']->id, '_price')); 
-						//var_dump($cart_item);
-						//var_dump(wp_kses_data( WC()->cart->get_cart_subtotal() ) ); ?>
+						<?php //var_dump( get_post_meta($cart_item['data']->id, '_price')); ?>
 						<?php $thisprice =  get_post_meta($cart_item['data']->id, '_price'); ?>
 							<?php echo apply_filters( 'woocommerce_cart_item_name', $_product->get_title(), $cart_item, $cart_item_key ) . '&nbsp;'; ?>
 							<?php echo apply_filters( 'woocommerce_checkout_cart_item_quantity', ' <strong class="product-quantity">' . sprintf( '&times; %s', $cart_item['quantity'] ) . '</strong>', $cart_item, $cart_item_key ); ?>
@@ -51,10 +49,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 						<?php 
 							if ( !$cart_item['vpc-is-secondary-product'] ) {
 								echo apply_filters( 'woocommerce_cart_item_subtotal', WC()->cart->get_product_subtotal( $_product, $cart_item['quantity'] ), $cart_item, $cart_item_key );
- 								//echo $_product->price.get_woocommerce_currency_symbol();
 							} else {
 								echo $thisprice[0].get_woocommerce_currency_symbol();
-								
 							}
 						?>
 							<?php //echo apply_filters( 'woocommerce_cart_item_subtotal', WC()->cart->get_product_subtotal( $_product, $cart_item['quantity'] ), $cart_item, $cart_item_key ); ?>

@@ -45,8 +45,8 @@ class VPC_Default_Skin {
             $options_style = "display: none";
 
         do_action("vpc_before_container", $config, $this->product->id, $this->config->id);
-        ?><div style="font-size: 150%;"><?php echo get_the_title( $this->product->id ); ?> | <?php _e('Tervezd meg a sajátod','vpc'); ?></div>
-        <a class="sizing-info" target="_blank" href="/sizing-info"><?php _e('Megrendelés előtt kérlek, hogy ellenőrizd a talp és pánt méreted','vpc'); ?></a>
+        ?><div style="font-size: 150%;"><?php echo get_the_title( $this->product->id ); ?> | <?php _e('Build your own','vpc'); ?></div>
+        <a class="sizing-info" target="_blank" href="/sizing-info"><?php _e('Before placing your order, please confirm your sole and strap size','vpc'); ?></a>
         <div id="vpc-container" class="o-wrap <?php echo $skin_name; ?>" data-curr="<?php echo get_woocommerce_currency_symbol(); ?>">
             <div class="col xl-1-2 lg-1-3 md-1-1 sm-1-1" id="vpc-components">
                 <?php
@@ -58,28 +58,19 @@ class VPC_Default_Skin {
                 ?>
             </div>
             <div class="col xl-1-2 lg-2-3 md-1-1 sm-1-1">
-                <div id="vpc-sticky">
-                    <?php //vpc_get_price_container(); ?>
-                    <div id="vpc-preview">
+                <?php //vpc_get_price_container(); ?>
+                <div id="vpc-preview">
 
-                    </div>
-                    <?php do_action("vpc_after_preview_area", $config) ?>
-                    <span class="sole-inf-excerpt"><?php echo $this->product->post->post_excerpt; ?></span>
-                    <span class="sole-inf-button">
-                        <?php echo vpc_get_action_buttons($this->product_id); ?>
-                        <div class="vpc-action-buttons col xl-1-2 lg-2-3 md-1-1 sm-1-1">
-                            <?php vpc_get_price_container(); ?>
-                        </div>
-                    </span>
                 </div>
+                <?php do_action("vpc_after_preview_area", $config) ?>
             </div>
             
             <!-- dgamoni -->
-            <!-- <div class="col xl-1-2 lg-2-3 md-1-1 sm-1-1"></div> -->
+            <div class="col xl-1-2 lg-2-3 md-1-1 sm-1-1"></div>
 
-         <!--  <div id="sole-inf" class="col xl-1-2 lg-2-3 md-1-1 sm-1-1"> -->
-               <!--  <span>* <?php //_e('The sole in the picture is merely illustrative and may not refer to your sole choice','vpc'); ?></span> -->
-            <!-- </div>  -->
+            <div id="sole-inf" class="col xl-1-2 lg-2-3 md-1-1 sm-1-1">
+                <span>* <?php _e('The sole in the picture is merely illustrative and may not refer to your sole choice','vpc'); ?></span>
+            </div>
 
             <div>
                 <?php do_action("vpc_container_end", $config) ?>
@@ -88,12 +79,15 @@ class VPC_Default_Skin {
         </div>
         
         <!-- dgamoni -->
-       <!--  <div class="vpc_action_container"> -->
-            <?php //echo vpc_get_action_buttons($this->product_id); ?>
-            <!-- <div class="vpc-action-buttons col xl-1-2 lg-2-3 md-1-1 sm-1-1"> -->
-                <?php //vpc_get_price_container(); ?>
-            <!-- </div> -->
-        <!-- </div> -->
+        <div class="vpc_action_container">
+        <?php //var_dump($this->product_id); ?>
+        <?php //var_dump($this->product->id); ?>
+            <?php echo vpc_get_action_buttons($this->product_id); ?>
+            
+            <div class="vpc-action-buttons col xl-1-2 lg-2-3 md-1-1 sm-1-1">
+                <?php vpc_get_price_container(); ?>
+            </div>
+        </div>
 
         <div id="debug"></div>
         <?php

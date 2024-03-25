@@ -25,7 +25,7 @@ function vpc_get_price_container() {
         return;
     ?>
     <div id="vpc-price-container">
-        <span class="vpc-price-label" style="font-weight: normal;color:#768e9d"> <?php _e("Total:", "vpc"); ?> </span>
+        <span class="vpc-price-label" style="font-weight: normal;color:#768e9d"> <?php _e("Összesen:", "vpc"); ?> </span>
         <span id="vpc-price"></span>   
     </div>
     <?php
@@ -37,7 +37,7 @@ function vpc_get_action_buttons_arr($product_id) {
 
     $add_to_cart = array(
         "id" => "vpc-add-to-cart",
-        "label" => __("Add to cart", "vpc"),
+        "label" => __("Kosárba", "vpc"),
         "class" => "",
         "attributes" => array(
             "data-pid" => $product_id,
