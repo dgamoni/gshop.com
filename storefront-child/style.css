@@ -164,12 +164,19 @@ input[type=text], input[type=email], select {
 
 
 /* Change visual configurator css */
-.vpc-options input:checked + label.custom:before {
+.storefront-featured-products .product_type_simple,
+.featured .product_type_simple {
+	display: none;
+}
+.vpc-options input:checked + label.custom {
+    border: 1px solid #FED24D;
+}
+/*.vpc-options input:checked + label.custom:before {
     font-family: FontAwesome;
     content: "\f106"!important;
     color: #FFCB05!important;
 	font-size: 25px;
-}
+}*/
 .vpc-component-header {
     color: #000000!important;
 }
@@ -242,4 +249,31 @@ input[type=text], input[type=email], select {
 
     position: relative;
     left: -50%;
+}
+
+/*dgamoni*/
+.front__slider .metaslider .caption-wrap {
+    bottom: 40px;
+    left: 50px;
+    background: transparent;
+    line-height: 3em;
+    opacity: 1;
+}
+.front__slider .metaslider .caption {
+    padding: 5px 10px;
+    word-wrap: break-word;
+    font-size: 2.4rem;
+    font-family: inherit;
+    font-weight: 700;
+    line-height: 1.2;
+    color: inherit;
+}
+/*.rslides {
+	display: none;
+}*/
+a:focus, .button:focus, .button.alt:focus, .button.added_to_cart:focus, .button.wc-forward:focus, button:focus, input[type="button"]:focus, input[type="reset"]:focus, input[type="submit"]:focus {
+       outline-color: inherit;
+}
+.sizing-info {
+	color: red;
 }

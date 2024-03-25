@@ -40,10 +40,25 @@ foreach ($dirs as $dir) {
 
 //plugins
 //require_once CORE_PLUGINS_PATH. 'init.php';
+// load js
+if ( !is_admin() ) {
+    wp_enqueue_script( 'gs_jqueryelevatezoom_js', CORE_PLUGINS_URL .'/jquery.elevatezoom.js', array('jquery'), 2, false );
+    wp_enqueue_script( 'gs_custom_js', CORE_PLUGINS_URL .'/custom.js', array('jquery'), 2, false );
+}
 
 // modules
 //require_once CORE_MODULES_PATH . 'init.php';
 
 //lib
 require_once CORE_PATH.'/lib/BFI_Thumb.php';
+
+//_VPC
+require_once CORE_PATH.'/lib/visual-product-configurator/vpc.php';
+define( 'CORE_PATH_VPC', CORE_PATH . '/lib/visual-product-configurator/' );
+define( 'CORE_URL_VPC', CORE_URL . '/lib/visual-product-configurator/' );
+
+// old ver
+// require_once CORE_PATH.'/lib/_old_visual-product-configurator/vpc.php';
+// define( 'CORE_PATH_VPC', CORE_PATH . '/lib/_old_visual-product-configurator/' );
+// define( 'CORE_URL_VPC', CORE_URL . '/lib/_old_visual-product-configurator/' );
 

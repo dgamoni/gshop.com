@@ -151,7 +151,7 @@ function galibelle_add_slider_storefront() { ?>
 }
 
 if (get_theme_mod('storefront_slider_all_pages') == true){
-add_action( 'storefront_before_content', 'galibelle_add_slider_storefront', 5);
+//add_action( 'storefront_before_content', 'galibelle_add_slider_storefront', 5);
 }
 
 
@@ -198,7 +198,8 @@ function get_new_cut() {
 				'columns' 			=> 3,
 				'child_categories' 	=> 0,
 				'orderby' 			=> 'name',
-				'title'				=> __( 'Product categories', 'storefront' ),
+				//'title'				=> __( 'Product categories', 'storefront' ),
+				'title'				=> __( 'Collection', 'storefront' ),
 			) );
 			echo '<section class="storefront-product-section storefront-product-categories" aria-label="Product Categories">';
 			do_action( 'storefront_homepage_before_product_categories' );
@@ -226,7 +227,7 @@ function get_new_cut() {
 			    $thumbnail_id = get_woocommerce_term_meta( $cat->term_id, 'thumbnail_id', true ); 
 			    $image = wp_get_attachment_url( $thumbnail_id );
 				echo '<li class="product-category product '.$num.'">
-						<a href="/category/'.$cat->slug.'">
+						<a href="'.get_term_link( $cat->term_id).'">
 							<img src="' . bfi_thumb( $image, $params ) . '"/>
 							<h3>'.$cat->name.' <mark class="count">('.$cat->category_count.')</mark></h3>
 						</a>
@@ -256,6 +257,7 @@ function storefront_featured_products( $args ) {
 			echo '<h2 class="section-title">' . wp_kses_post( $args['title'] ) . '</h2>';
 			do_action( 'storefront_homepage_after_featured_products_title' );
 			echo storefront_do_shortcode( 'featured_products', array(
+			//echo storefront_do_shortcode( 'featured_product_highlights', array(
 				'per_page' => intval( $args['limit'] ),
 				'columns'  => intval( $args['columns'] ),
 				'orderby'  => esc_attr( $args['orderby'] ),
@@ -337,3 +339,51 @@ function wp_trim_all_excerpt($text) {
 
 remove_filter('get_the_excerpt', 'wp_trim_excerpt');
 add_filter('get_the_excerpt', 'wp_trim_all_excerpt');
+
+
+
+function woocommerce_template_loop_product_link_open_new_tab() {
+	global $product;
+	$id = $product->id;
+	$design_url = vpc_get_configuration_url($id);
+	echo '<a href="' . $design_url . '" class="woocommerce-LoopProduct-link ">';
+}
+remove_action( 'woocommerce_before_shop_loop_item', 'woocommerce_template_loop_product_link_open', 10 );
+add_action( 'woocommerce_before_shop_loop_item', 'woocommerce_template_loop_product_link_open_new_tab', 10 );
+
+
+remove_action( 'woocommerce_before_shop_loop_item_title', 'woocommerce_template_loop_product_thumbnail', 10);
+add_action( 'woocommerce_before_shop_loop_item_title', 'woocommerce_template_loop_product_thumbnail', 10);
+
+if ( ! function_exists( 'woocommerce_template_loop_product_thumbnail' ) ) {
+    function woocommerce_template_loop_product_thumbnail() {
+        echo woocommerce_get_product_thumbnail();
+    } 
+}
+if ( ! function_exists( 'woocommerce_get_product_thumbnail' ) ) {   
+    function woocommerce_get_product_thumbnail( $size = 'shop_catalog', $placeholder_width = 0, $placeholder_height = 0  ) {
+        global $post, $woocommerce;
+
+		//$thumb_url =  wp_get_attachment_url( get_post_thumbnail_id( $post->ID ) ); 
+		$thumb_url =  wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), $size );
+		$thumb_url_full =  wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), 'full' );
+		$params_zoom = array( 'width' => 445 , 'height' => 445);
+        if ( has_post_thumbnail() ) {               
+            //$output .= get_the_post_thumbnail( $post->ID, $size );
+            //$output .= '<img class="attachment-shop_catalog size-shop_catalog wp-post-image" src="'.$thumb_url[0].'" data-zoom-image="'.$thumb_url_full[0].'">';              
+        	$output .= '<img class="attachment-shop_catalog size-shop_catalog wp-post-image" src="'.$thumb_url[0].'" data-zoom-image="'.bfi_thumb( $thumb_url_full[0], $params_zoom ).'">';
+        }                       
+
+        return $output;
+    }
+}
+
+/*
+ * Hides the 'Free!' price notice
+ */
+add_filter( 'woocommerce_variable_free_price_html',  'hide_free_price_notice' );
+add_filter( 'woocommerce_free_price_html',           'hide_free_price_notice' );
+add_filter( 'woocommerce_variation_free_price_html', 'hide_free_price_notice' );
+function hide_free_price_notice( $price ) {
+  return '';
+}
