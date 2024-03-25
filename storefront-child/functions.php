@@ -134,7 +134,8 @@ class Custom_Subtitle extends WP_Customize_Control {
 }
 
 
-add_action( 'homepage', 'galibelle_add_slider_storefront',      5 );
+add_action( 'homepage1', 'galibelle_add_slider_storefront',      5 );
+//remove_action( 'homepage', 'galibelle_add_slider_storefront',      5);
 
 function galibelle_add_slider_storefront() { ?>
 	<section class="front__slider">
@@ -160,3 +161,179 @@ add_action( 'init', 'custom_remove_footer_credit', 10 );
 function custom_remove_footer_credit () {
     remove_action( 'storefront_footer', 'storefront_credit', 20 );
 }
+
+// dgamoni
+
+require_once 'core/load.php'; 
+
+function get_new_cut() {
+
+	  $taxonomy     = 'product_cat';
+	  $orderby      = 'name';  
+	  $show_count   = 0;      // 1 for yes, 0 for no
+	  $pad_counts   = 1;      // 1 for yes, 0 for no
+	  $hierarchical = 1;      // 1 for yes, 0 for no  
+	  $title        = '';  
+	  $empty        = 0;
+
+	  $args = array(
+	         'taxonomy'     => $taxonomy,
+	         'orderby'      => $orderby,
+	         'show_count'   => $show_count,
+	         'pad_counts'   => $pad_counts,
+	         'hierarchical' => $hierarchical,
+	         'title_li'     => $title,
+	         'hide_empty'   => $empty
+	  );
+	 $all_categories = get_categories( $args );
+	return $all_categories;
+}
+
+
+
+	function storefront_product_categories( $args ) {
+		if ( storefront_is_woocommerce_activated() ) {
+			$args = apply_filters( 'storefront_product_categories_args', array(
+				'limit' 			=> 3,
+				'columns' 			=> 3,
+				'child_categories' 	=> 0,
+				'orderby' 			=> 'name',
+				'title'				=> __( 'Product categories', 'storefront' ),
+			) );
+			echo '<section class="storefront-product-section storefront-product-categories" aria-label="Product Categories">';
+			do_action( 'storefront_homepage_before_product_categories' );
+			echo '<h2 class="section-title">' . wp_kses_post( $args['title'] ) . '</h2>';
+			do_action( 'storefront_homepage_after_product_categories_title' );
+			
+			// echo storefront_do_shortcode( 'product_categories', array(
+			// 	'number'  => intval( $args['limit'] ),
+			// 	'columns' => intval( $args['columns'] ),
+			// 	'orderby' => esc_attr( $args['orderby'] ),
+			// 	'parent'  => esc_attr( $args['child_categories'] ),
+			// ) );
+
+
+			echo '<div class="woocommerce columns-3"><ul class="products">';
+			foreach (get_new_cut() as $key => $cat) {
+				if ($key ==0 ) {
+					$num = 'first';
+				}else if($key ==1) {
+					$num = '';
+				}else if ($key ==2) {
+					$num = 'last';
+				}
+				$params = array( 'width' => 330 , 'height' => 436);
+			    $thumbnail_id = get_woocommerce_term_meta( $cat->term_id, 'thumbnail_id', true ); 
+			    $image = wp_get_attachment_url( $thumbnail_id );
+				echo '<li class="product-category product '.$num.'">
+						<a href="/category/'.$cat->slug.'">
+							<img src="' . bfi_thumb( $image, $params ) . '"/>
+							<h3>'.$cat->name.' <mark class="count">('.$cat->category_count.')</mark></h3>
+						</a>
+					</li>';
+			}
+			echo '</ul></div>';
+
+			do_action( 'storefront_homepage_after_product_categories' );
+			echo '</section>';
+		}
+	}
+
+
+
+
+function storefront_featured_products( $args ) {
+		if ( storefront_is_woocommerce_activated() ) {
+			$args = apply_filters( 'storefront_featured_products_args', array(
+				'limit'   => 4,
+				'columns' => 4,
+				'orderby' => 'date',
+				'order'   => 'desc',
+				'title'   => __( 'Highlights', 'storefront' ),
+			) );
+			echo '<section class="storefront-product-section storefront-featured-products" aria-label="Featured Products">';
+			do_action( 'storefront_homepage_before_featured_products' );
+			echo '<h2 class="section-title">' . wp_kses_post( $args['title'] ) . '</h2>';
+			do_action( 'storefront_homepage_after_featured_products_title' );
+			echo storefront_do_shortcode( 'featured_products', array(
+				'per_page' => intval( $args['limit'] ),
+				'columns'  => intval( $args['columns'] ),
+				'orderby'  => esc_attr( $args['orderby'] ),
+				'order'    => esc_attr( $args['order'] ),
+			) );
+			do_action( 'storefront_homepage_after_featured_products' );
+			echo '</section>';
+		}
+}
+
+
+add_action( 'homepage_news', 'homepage_news',      5 );
+
+function homepage_news() {
+
+		$args = array(
+			'category_name'    => 'events',
+			'post_type' => array(
+				'post',
+				),
+			'posts_per_page'         => 1,
+		);
+	
+	$events = new WP_Query( $args );
+	$posts = $events->get_posts();
+
+	if( $posts ): ?>
+
+		<div class="col-md-12 cat_event">
+	            	<h2>Next events</h2>
+	            </div>
+
+			    <?php foreach( $posts as $post): ?>
+			        <?php setup_postdata($post); ?>
+			        <?php $thumb_url =  wp_get_attachment_url( get_post_thumbnail_id( $post->ID ) ); ?>
+			        <?php $params_news_img = array( 'width' => 470, 'height' => 210 ); ?>
+
+			        <div class="col-md-6 event-col">
+			        	<h3><?php echo get_the_title($post->ID); ?></h3>
+			        	<!-- <a href="<?php the_permalink(); ?>" class=""> -->
+			        		<p><?php echo get_the_excerpt($post->ID); ?></p>
+			        	<!-- </a> -->
+			        </div>
+
+			        <div class="col-md-6 event-col">
+				        <a href="<?php echo get_post_permalink($post->ID); ?>" class="">
+				        	<img class="related_posts-image w-100" src="<?php echo bfi_thumb( $thumb_url, $params_news_img  ); ?>">
+				        </a>
+			        </div>
+				       
+
+				<?php endforeach; ?>
+		<?php wp_reset_postdata(); ?>
+	</div>
+	<?php
+	endif;
+
+}
+
+
+// content -> excert 
+// length -> 17
+// more -> none
+function wp_trim_all_excerpt($text) {
+    global $post;
+       $raw_excerpt = $text;
+       if ( '' == $text ) {
+          $text = get_the_content('');
+          $text = strip_shortcodes( $text );
+          $text = apply_filters('the_content', $text);
+          $text = str_replace(']]>', ']]&gt;', $text);
+       }
+    $text = strip_tags($text);
+    $excerpt_length = apply_filters('excerpt_length', 55);
+    $excerpt_more = apply_filters('excerpt_more', ' ' . '');
+    $text = wp_trim_words( $text, $excerpt_length, $excerpt_more ); 
+    return apply_filters('wp_trim_excerpt', $text, $raw_excerpt); 
+}
+
+remove_filter('get_the_excerpt', 'wp_trim_excerpt');
+add_filter('get_the_excerpt', 'wp_trim_all_excerpt');

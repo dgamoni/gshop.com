@@ -122,3 +122,124 @@ body.page-id-8  {
 	padding: 0;
 }
 }
+
+/* Remove circle from variables */
+.ced-vm-swatch-wrapper img {
+	border-radius: 3px!important;
+}
+
+
+/*dgamoni*/
+.noslider .front__slider {
+	display: none;
+}
+.front__slider {
+	display: block;
+}
+.event-col {
+		width: 100%;
+		float: none;
+	}
+.cat_event {
+	    padding-top: 20px;
+    border-top: 1px solid #D8D8D8;
+}
+@media (min-width: 768px) {
+	.front__slider {
+		/*display: none;*/
+	}
+	.event-col {
+		width: 50%;
+		float: left;
+		padding: 10px;
+	}
+}
+
+/* Change Contact Form 7 Styling */
+input[type=text], input[type=email], select {
+/*	background-color: #fff; */
+	margin-bottom: 15px;
+}
+
+
+
+/* Change visual configurator css */
+.vpc-options input:checked + label.custom:before {
+    font-family: FontAwesome;
+    content: "\f106"!important;
+    color: #FFCB05!important;
+	font-size: 25px;
+}
+.vpc-component-header {
+    color: #000000!important;
+}
+.txt.vpc-selected {
+    color: #5A5A5A!important;
+}
+.vpc-options {
+    background-color: #FBFBFB!important;
+}
+.vpc-component:first-of-type {
+    border-top: 0px solid #D0D0D0!important;
+}
+.vpc-component {
+    border: 0px solid #D0D0D0!important;
+}
+#vpc-price-container {
+    height: 50px;
+    color: #000000!important;
+    font-weight: bold;
+    text-align: right;
+    font-size: 26px!important;
+}
+#vpc-qty-container input[type=button], .vpc-action-buttons button {
+    background: #000000!important;
+    border-radius: 0px!important;
+    box-sizing: border-box;
+}
+.vpc-selected-icon img {
+    max-width: 30px!important;
+    max-height: 30px!important;
+}
+
+
+
+
+/* Social networks */
+.fbLink {
+	display: inline-block;
+	width: 20px;
+	height: 20px;
+	background: url('/wp-content/uploads/2016/12/fb.png') top;
+}
+.fbLink:hover {
+	background-position: 100% 100%;
+}
+.instaLink {
+	display: inline-block;
+	width: 20px;
+	height: 20px;
+	background: url('/wp-content/uploads/2016/12/insta.png') top;
+}
+.instaLink:hover {
+	background-position: 100% 100%;
+}
+.ytLink {
+	display: inline-block;
+	width: 20px;
+	height: 20px;
+	background: url('/wp-content/uploads/2016/12/y.png') top;
+}
+.ytLink:hover {
+	background-position: 100% 100%;
+}
+.main-redes {
+
+    position: relative;
+    left: 50%;
+}
+.fixer-redes {
+
+    position: relative;
+    left: -50%;
+}
