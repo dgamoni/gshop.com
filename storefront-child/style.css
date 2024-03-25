@@ -1,0 +1,124 @@
+/*
+Theme Name:   	Storefront Child Theme
+Theme URI:    	https://github.com/stuartduff/storefront-child-theme
+Author:       	Stuart Duff
+Author URI:     http://stuartduff.com
+Template:     	storefront
+Description:  	This is a blank child theme for WooThemes StoreFront theme
+Version:      	1.0.0
+License:      	GNU General Public License v2 or later
+License URI:  	http://www.gnu.org/licenses/gpl-2.0.html
+Text Domain:  	storefront
+Tags:         	black, white, light, two-columns, left-sidebar, right-sidebar, responsive-layout, custom-background, custom-colors, custom-header, custom-menu, featured-images, full-width-template, threaded-comments, accessibility-ready
+This theme, like WordPress, is licensed under the GPL.
+Use it to make something cool, have fun, and share what you've learned with others.
+Storefront is based on Underscores http://underscores.me/, (C) 2012-2014 Automattic, Inc.
+Resetting and rebuilding styles have been helped along thanks to the fine work of
+Eric Meyer http://meyerweb.com/eric/tools/css/reset/index.html
+along with Nicolas Gallagher and Jonathan Neal http://necolas.github.com/normalize.css/
+FontAwesome License: SIL Open Font License - http://scripts.sil.org/OFL
+Images License: GNU General Public License v2 or later
+*/
+/*
+ * Add your own custom css below this text.
+ */
+
+ 
+/* Change default font to Raleway - already loaded in functions.php*/
+h1, h2, h3, h4, h5, h6, body, button, input, textarea {
+	font-family: 'Raleway', sans-serif;	
+}
+body {
+	font-size: 14px;
+}
+.cat-item {
+	font-size: 13px;
+}
+#site-navigation .menu-item {
+	font-size: 14px;
+}
+.menu-item {
+	font-size: 13px;
+}
+.textwidget  {
+	font-size: 13px;
+}
+
+
+
+
+ /* Change default colors */
+ /* Base color: #F7C329 - hover color #ED5A2E - background color: #F1F1EF */
+.main-navigation ul li a:hover {
+color: #ED5A2E;
+}
+.main-navigation ul li a:active {
+color: #ED5A2E!important;
+}
+@media (min-width: 768px) {
+.storefront-primary-navigation {
+	background: #FED24D;
+}
+}
+.mc4wp-form-fields input[type=email] {
+	background-color: #FFFFFF!important;
+}
+#colophon a {
+    font-weight: 400;
+}
+#site-navigation a {
+    font-weight: 400;
+}
+a:focus {
+    outline: none;
+}
+/* White backgroung on qty on product page */
+.qty {
+	background-color: #FFFFFF;
+}
+/* White backgroung on homepage only */
+body.page-id-8  {
+    background-color: #ffffff!important;
+}
+/* Remove mobile menu icons */
+.main-navigation ul li a:before {
+    content: none;
+}
+
+/* FOOTER CLEANUP */
+/* Remove widget footer icons */
+.footer-widgets ul li:before {
+    content: none;
+}
+.widget_product_categories ul li.current-cat:before {
+    content: none;
+}
+/* Remove socket padding */
+.site-info {
+    padding: 0;
+}
+/* Remove footer widgets line spacing and borders */
+.widget_product_categories ul li {
+	margin-bottom: 0;
+}
+.widget_nav_menu ul li {
+	margin-bottom: 0;
+}
+.widget .widget-title {
+	font-size: 1.1em;
+	border-bottom: 0;
+    padding: 0;
+    margin-bottom: 0;
+}
+.sfb-footer-bar {
+	border-top: 1px solid #D8D8D8;
+	border-bottom: 1px solid #D8D8D8;
+}
+@media (min-width: 768px) {
+.footer-widgets {
+    border-bottom: 0;
+}
+.site-footer {
+	padding: 0;
+}
+}
