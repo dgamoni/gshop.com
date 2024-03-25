@@ -25,7 +25,7 @@ function vpc_get_price_container() {
         return;
     ?>
     <div id="vpc-price-container">
-        <span class="vpc-price-label" style="font-weight: normal;color:#768e9d"> <?php _e("Összesen:", "vpc"); ?> </span>
+        <span class="vpc-price-label" style="font-weight: normal;color:#768e9d"> <?php _e("Total:", "vpc"); ?> </span>
         <span id="vpc-price"></span>   
     </div>
     <?php
@@ -37,7 +37,7 @@ function vpc_get_action_buttons_arr($product_id) {
 
     $add_to_cart = array(
         "id" => "vpc-add-to-cart",
-        "label" => __("Kosárba", "vpc"),
+        "label" => __("Add to cart", "vpc"),
         "class" => "",
         "attributes" => array(
             "data-pid" => $product_id,
@@ -297,6 +297,7 @@ function vpc_extract_configuration_images($saved_config, $original_config) {
     return $output;
 }
 
+// dgamoni error
 function vpc_get_behaviours() {
     $behaviours_arr = apply_filters("vpc_configuration_behaviours", array(
         "radio" => __("Single choice", "vpc"),

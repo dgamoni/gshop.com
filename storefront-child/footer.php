@@ -59,8 +59,6 @@
 	 $all_categories = get_categories( $args );
 //var_dump($all_categories);
 
-//var_dump(woocommerce_mini_cart());
-
 ?>
 </body>
 </html>

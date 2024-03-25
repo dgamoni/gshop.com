@@ -10,5 +10,17 @@ jQuery(document).ready(function($){
  //        zoomWindowHeight: 450
 	// });
 
+	// $("#vpc-sticky").sticky({
+	// 	topSpacing:130,
+	// 	bottomSpacing:251,
+	// 	getWidthFrom:'.entry-content'
+	// });
+
+	// $("#vpc-sticky").stick_in_parent({
+	// 	parent:"#vpc-ajax-container",
+	// });
+
+	//$('#vpc-sticky').fixTo('body');
+
 }); 
 

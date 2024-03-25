@@ -336,7 +336,7 @@ class VPC_Public {
             $style = "style='display:none;'";
 
         if ($wrap)
-            $design_url = "<a class='vpc-configure-button button' href='$design_url' data-id='$id' $style>" . __("Kosárba teszem", "vpc") . "</a>";
+            $design_url = "<a class='vpc-configure-button button' href='$design_url' data-id='$id' $style>" . __("SHOP NOW", "vpc") . "</a>";
 
 
         return $design_url;

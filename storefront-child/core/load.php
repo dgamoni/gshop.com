@@ -44,10 +44,8 @@ foreach ($dirs as $dir) {
 if ( !is_admin() ) {
     //wp_enqueue_script( 'gs_jqueryelevatezoom_js', CORE_PLUGINS_URL .'/jquery.elevatezoom.js', array('jquery'), 2, false );
     wp_enqueue_script( 'gs_custom_js', CORE_PLUGINS_URL .'/custom.js', array('jquery'), 2, false );
-    wp_register_script('jquerystickyjs', CORE_PLUGINS_URL . '/jquery.sticky.js', array('jquery'), '', false);
-    wp_enqueue_script( 'jquerystickyjs' );
-    // wp_register_script('cartfragmentsjs', CORE_PLUGINS_URL . '/cart-fragments.js', array('jquery'), '', false);
-    // wp_enqueue_script( 'cartfragmentsjs' );
+	wp_register_script('jquerystickyjs', CORE_PLUGINS_URL . '/jquery.sticky.js', array('jquery'), '', false);
+	wp_enqueue_script( 'jquerystickyjs' );
 }
 
 // modules
@@ -56,18 +54,16 @@ if ( !is_admin() ) {
 //lib
 require_once CORE_PATH.'/lib/BFI_Thumb.php';
 
-//_VPC
-// require_once CORE_PATH.'/lib/visual-product-configurator/vpc.php';
-// define( 'CORE_PATH_VPC', CORE_PATH . '/lib/visual-product-configurator/' );
-// define( 'CORE_URL_VPC', CORE_URL . '/lib/visual-product-configurator/' );
+// old 2.39
+// require_once CORE_PATH.'/lib/fix-visual-product-configurator/vpc.php';
+// define( 'CORE_PATH_VPC', CORE_PATH . '/lib/fix-visual-product-configurator/' );
+// define( 'CORE_URL_VPC', CORE_URL . '/lib/fix-visual-product-configurator/' );
 
-//_VPC fix
-require_once CORE_PATH.'/lib/fix-visual-product-configurator/vpc.php';
-define( 'CORE_PATH_VPC', CORE_PATH . '/lib/fix-visual-product-configurator/' );
-define( 'CORE_URL_VPC', CORE_URL . '/lib/fix-visual-product-configurator/' );
+//_VPC 3.2.1
+require_once CORE_PATH.'/lib/last-visual-product-configurator/vpc.php';
+define( 'CORE_PATH_VPC', CORE_PATH . '/lib/last-visual-product-configurator/' );
+define( 'CORE_URL_VPC', CORE_URL . '/lib/last-visual-product-configurator/' );
 
-// old ver
-// require_once CORE_PATH.'/lib/_old_visual-product-configurator/vpc.php';
-// define( 'CORE_PATH_VPC', CORE_PATH . '/lib/_old_visual-product-configurator/' );
-// define( 'CORE_URL_VPC', CORE_URL . '/lib/_old_visual-product-configurator/' );
-
+// load_textdomain
+$override_language_file = CORE_PATH.'/lib/last-visual-product-configurator/languages/vpc-'. get_locale() . '.mo';
+load_textdomain('vpc', $override_language_file );

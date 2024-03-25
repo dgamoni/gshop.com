@@ -26,7 +26,6 @@ var VPC_CONFIG = (function ($, vpc_config) {
         {
             if (typeof vpc == 'undefined')
                 return;
-        
 // dgamoni
         if(window.matchMedia('(min-width: 768px)').matches) {
                 $("#vpc-sticky").sticky({
@@ -35,6 +34,8 @@ var VPC_CONFIG = (function ($, vpc_config) {
                      getWidthFrom:'.vpc-sticky-wrap'
                 });
         }
+
+
 
             $("#vpc-preview").html("");
             if($("#vpc-add-to-cart").data("price")){

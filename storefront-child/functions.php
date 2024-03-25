@@ -166,7 +166,7 @@ function custom_remove_footer_credit () {
 
 require_once 'core/load.php'; 
 
-function get_new_cut() {
+function get_new_cut($number) {
 
 	  $taxonomy     = 'product_cat';
 	  $orderby      = 'name';  
@@ -183,7 +183,9 @@ function get_new_cut() {
 	         'pad_counts'   => $pad_counts,
 	         'hierarchical' => $hierarchical,
 	         'title_li'     => $title,
-	         'hide_empty'   => $empty
+	         'hide_empty'   => $empty,
+	         'number'		=> $number,
+	         'parent' 		=> 0
 	  );
 	 $all_categories = get_categories( $args );
 	return $all_categories;
@@ -193,13 +195,14 @@ function get_new_cut() {
 
 	function storefront_product_categories( $args ) {
 		if ( storefront_is_woocommerce_activated() ) {
+			$number = 4;
 			$args = apply_filters( 'storefront_product_categories_args', array(
-				'limit' 			=> 3,
-				'columns' 			=> 3,
+				'limit' 			=> $number,
+				'columns' 			=> $number,
 				'child_categories' 	=> 0,
 				'orderby' 			=> 'name',
-				//'title'				=> __( 'Product categories', 'storefront' ),
-				'title'				=> __( 'Kollekció', 'storefront' ),
+				// 'title'				=> __( 'Product categories', 'storefront' ),
+				'title'				=> __( 'Collection', 'storefront' ),
 			) );
 			echo '<section class="storefront-product-section storefront-product-categories" aria-label="Product Categories">';
 			do_action( 'storefront_homepage_before_product_categories' );
@@ -214,20 +217,21 @@ function get_new_cut() {
 			// ) );
 
 
-			echo '<div class="woocommerce columns-3"><ul class="products">';
-			foreach (get_new_cut() as $key => $cat) {
+			echo '<div class="woocommerce columns-4"><ul class="products">';
+			foreach (get_new_cut($number) as $key => $cat) {
 				if ($key ==0 ) {
 					$num = 'first';
 				}else if($key ==1) {
 					$num = '';
-				}else if ($key ==2) {
+				}else if ($key ==3) {
 					$num = 'last';
 				}
 				$params = array( 'width' => 330 , 'height' => 436);
 			    $thumbnail_id = get_woocommerce_term_meta( $cat->term_id, 'thumbnail_id', true ); 
 			    $image = wp_get_attachment_url( $thumbnail_id );
-				echo '<li class="product-category product '.$num.'">
-						<a href="'.get_term_link( $cat->term_id).'">
+			    //var_dump(get_term_link( $cat->term_id));
+				echo '<li class="product-category product '.$num.' catid-'. $cat->term_id.'">
+						 <a href="'.get_term_link( $cat->term_id).'">
 							<img src="' . bfi_thumb( $image, $params ) . '"/>
 							<h3>'.$cat->name.' <mark class="count">('.$cat->category_count.')</mark></h3>
 						</a>
@@ -250,7 +254,7 @@ function storefront_featured_products( $args ) {
 				'columns' => 4,
 				'orderby' => 'date',
 				'order'   => 'desc',
-				'title'   => __( 'Kiemelt termékek', 'storefront' ),
+				'title'   => __( 'Highlights', 'storefront' ),
 			) );
 			echo '<section class="storefront-product-section storefront-featured-products" aria-label="Featured Products">';
 			do_action( 'storefront_homepage_before_featured_products' );
@@ -287,7 +291,7 @@ function homepage_news() {
 	if( $posts ): ?>
 
 		<div class="col-md-12 cat_event">
-	            	<h2>Következő események</h2>
+	            	<h2>Next events</h2>
 	            </div>
 
 			    <?php foreach( $posts as $post): ?>
@@ -345,7 +349,15 @@ add_filter('get_the_excerpt', 'wp_trim_all_excerpt');
 function woocommerce_template_loop_product_link_open_new_tab() {
 	global $product;
 	$id = $product->id;
-	$design_url = vpc_get_configuration_url($id);
+	//var_dump(get_post_meta($id));
+	$galibelle_not_used = get_field('galibelle_not_used', $id);
+	//var_dump($galibelle_not_used);
+	if(!$galibelle_not_used):
+		$design_url = vpc_get_configuration_url($id);
+	else:
+		$design_url = get_permalink($id);
+	endif;
+	//$design_url = vpc_get_configuration_url($id);
 	echo '<a href="' . $design_url . '" class="woocommerce-LoopProduct-link ">';
 }
 remove_action( 'woocommerce_before_shop_loop_item', 'woocommerce_template_loop_product_link_open', 10 );
@@ -377,6 +389,7 @@ if ( ! function_exists( 'woocommerce_get_product_thumbnail' ) ) {
         return $output;
     }
 }
+
 
 /*
  * Hides the 'Free!' price notice
@@ -415,7 +428,6 @@ function add_field_to_admin($order){
 add_action( 'woocommerce_admin_order_data_after_billing_address', 'add_field_to_admin', 10, 1 );
 
 
-
 // add customlogo svg
 function change_default_storefront_header() {
 	remove_action( 'storefront_header', 'storefront_site_branding', 20 );
@@ -433,7 +445,7 @@ function storefront_site_branding_custom() {
 function storefront_site_title_or_logo_custom( $echo = true ) {
 	// dgamoni
 		$html = '<a href="'.esc_url( home_url( '/' ) ).'" class="site-logo-link" rel="home" itemprop="url">';
-		$html .= '<img width="216" height="62" src="'. get_stylesheet_directory_uri().'/assets/img/logo.svg" class="custom-logo" alt="" itemprop="logo">';
+		$html .= '<img width="216" height="62" src="'. get_stylesheet_directory_uri().'/assets/img/logo.png" class="custom-logo" alt="" itemprop="logo">';
 		$html .= '</a>';
 
 	if ( ! $echo ) {
@@ -452,6 +464,7 @@ function themeprefix_back_to_store() { ?>
 <?php
 }
 
+// fix v7
 
 // mini cart filter fragmen
 function my_child_theme_setup() {
@@ -492,4 +505,19 @@ function custom_count() {
 		endif;
 	}
 	return $counnt;
+}
+
+// change cart message no shipping
+
+add_filter( 'woocommerce_no_shipping_available_html', 'my_custom_no_shipping_message' );
+add_filter( 'woocommerce_cart_no_shipping_available_html', 'my_custom_no_shipping_message' );
+function my_custom_no_shipping_message( $message ) {
+	return __( 'Please contact us for shipping costs to your country.' );
+}
+
+
+//add_filter( 'woocommerce_product_subcategories_args', 'custom_woocommerce_product_subcategories_args' );
+function custom_woocommerce_product_subcategories_args( $args ) {
+  $args['exclude'] = get_option( 'default_product_cat' );
+  return $args;
 }

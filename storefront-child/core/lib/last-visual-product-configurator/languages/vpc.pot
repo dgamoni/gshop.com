@@ -1,0 +1,572 @@
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: vpc\n"
+"POT-Creation-Date: 2017-07-10 14:12+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: ORION TEAM <support@orionorigin.com>\n"
+"Language-Team: ORION <support@orionorigin.com>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Loco - https://localise.biz/\n"
+"X-Poedit-KeywordsList: _e;__\n"
+"X-Poedit-Basepath: .\n"
+"X-Poedit-SearchPath-0: ..\n"
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION"
+
+#: ../admin/class-vpc-admin.php:110
+msgid "Enable reverse rule"
+msgstr ""
+
+#: ../admin/class-vpc-admin.php:111
+msgid "Conditions relationship"
+msgstr ""
+
+#: ../admin/class-vpc-admin.php:144
+msgid "Settings"
+msgstr ""
+
+#: ../admin/class-vpc-admin.php:146
+msgid "Getting Started"
+msgstr ""
+
+#: ../admin/class-vpc-admin.php:159
+msgid "Visual Products Configurator Settings"
+msgstr ""
+
+#: ../admin/class-vpc-admin.php:178
+msgid "Configuration page"
+msgstr ""
+
+#: ../admin/class-vpc-admin.php:184
+msgid "Page where all products are configured."
+msgstr ""
+
+#: ../admin/class-vpc-admin.php:188
+msgid "Manage the configuration page"
+msgstr ""
+
+#: ../admin/class-vpc-admin.php:194
+msgid ""
+"If Yes, the plugin will handle the content of the configuration page. If No, "
+"use the shortcode [wpb_builder] to display the configurator INSIDE the "
+"configuration page."
+msgstr ""
+
+#: ../admin/class-vpc-admin.php:198
+msgid "None"
+msgstr ""
+
+#: ../admin/class-vpc-admin.php:199
+msgid "Refresh"
+msgstr ""
+
+#: ../admin/class-vpc-admin.php:200
+msgid "Redirect to cart page"
+msgstr ""
+
+#: ../admin/class-vpc-admin.php:201
+msgid "Redirect to product page"
+msgstr ""
+
+#: ../admin/class-vpc-admin.php:205
+msgid "Hide quantity box"
+msgstr ""
+
+#: ../admin/class-vpc-admin.php:211
+msgid "Hide quantity box on configurator page?"
+msgstr ""
+
+#: ../admin/class-vpc-admin.php:215
+msgid "Hide woocommerce add to cart button "
+msgstr ""
+
+#: ../admin/class-vpc-admin.php:221
+msgid ""
+"Should the plugin hide the default woocommerce add to cart button on "
+"configurables products?"
+msgstr ""
+
+#: ../admin/class-vpc-admin.php:224
+msgid "Hide linked products cart page "
+msgstr ""
+
+#: ../admin/class-vpc-admin.php:230
+msgid ""
+"Should the plugin hide the products linked to the options in the cart page?"
+msgstr ""
+
+#: ../admin/class-vpc-admin.php:234
+msgid "Action after addition to cart"
+msgstr ""
+
+#: ../admin/class-vpc-admin.php:240
+msgid ""
+"What should happen once the customer adds the configured product to the cart."
+msgstr ""
+
+#: ../admin/class-vpc-admin.php:244
+msgid "Ajax Loading"
+msgstr ""
+
+#: ../admin/class-vpc-admin.php:249
+msgid ""
+"Load the editor via ajax. If enabled, this will speed up configuration page "
+"load by building configurator after the configuration page is fully loaded."
+msgstr ""
+
+#: ../admin/class-vpc-admin.php:253
+msgid "Store original configuration data in orders"
+msgstr ""
+
+#: ../admin/class-vpc-admin.php:258
+msgid ""
+"If enabled, the plugin will store a snapshot of the original configuration "
+"data in the orders table everytime an order is made."
+msgstr ""
+
+#: ../admin/class-vpc-admin.php:262
+msgid "Envato Username"
+msgstr ""
+
+#: ../admin/class-vpc-admin.php:265
+msgid "Your envato username"
+msgstr ""
+
+#: ../admin/class-vpc-admin.php:270
+msgid "Secret API Key"
+msgstr ""
+
+#: ../admin/class-vpc-admin.php:273
+msgid ""
+"You can find your secret api key by following the instructions <a "
+"href=\"https://www.youtube.com/watch?v=KnwumvnWAIM\" target=\"blank\">"
+"here</a>."
+msgstr ""
+
+#: ../admin/class-vpc-admin.php:278
+msgid "Purchase Code"
+msgstr ""
+
+#: ../admin/class-vpc-admin.php:281
+msgid ""
+"You can find your purchase code by following the instructions <a "
+"href=\"https://help.market.envato.com/hc/en-us/articles/202822600-Where-can-"
+"I-find-my-Purchase-Code-\" target=\"blank\">here</a>."
+msgstr ""
+
+#: ../admin/class-vpc-admin.php:316
+msgid "Take your store beyond the typical - sell anything"
+msgstr ""
+
+#: ../admin/class-vpc-admin.php:386
+msgid "Woocommerce Visual Product Configurator database update required."
+msgstr ""
+
+#: ../admin/class-vpc-admin.php:388
+msgid ""
+"Hi! This version of the Woocommerce Visual Product Configuratormade some "
+"changes in the way it's data are stored. So in order to work properly, we "
+"just need you to click on the \"Run Updater\" button to move your old "
+"settings to the new structure. "
+msgstr ""
+
+#: ../admin/class-vpc-admin.php:389
+msgid "Run the updater"
+msgstr ""
+
+#: ../admin/class-vpc-admin.php:692
+msgid "Configurable"
+msgstr ""
+
+#: ../admin/class-vpc-admin.php:718
+msgid "Yes"
+msgstr ""
+
+#: ../admin/class-vpc-admin.php:720
+msgid "No"
+msgstr ""
+
+#: ../admin/class-vpc-admin.php:754
+msgid "Visual Products Configurator"
+msgstr ""
+
+#: ../admin/class-vpc-admin.php:757
+msgid "Visual Products Configurator Video"
+msgstr ""
+
+#: ../admin/class-vpc-admin.php:758
+msgid ""
+"The youtube video below will cover the basics of the creation of a "
+"configurable product."
+msgstr ""
+
+#: ../admin/class-vpc-admin.php:779
+msgid "Grand-Popo is the official shop theme for Visual Product Configurator"
+msgstr ""
+
+#: ../admin/class-vpc-admin.php:781
+msgid ""
+"Sublattice of electrons that point in one direction, than from the "
+"sublattice that points Sublattice of electrons that point in one direction, "
+"than fromthe sublattice that points"
+msgstr ""
+
+#: ../admin/class-vpc-admin.php:784
+msgid "Get for Free"
+msgstr ""
+
+#: ../admin/class-vpc-admin.php:785
+msgid "Launch Demo"
+msgstr ""
+
+#: ../admin/class-vpc-admin.php:792
+msgid "Woocommerce All Discounts"
+msgstr ""
+
+#: ../admin/class-vpc-admin.php:794
+msgid ""
+"Woocommerce All Discounts is a groundbreaking extension that helps you "
+"manage bulk or wholesale pricing, customers roles or groups based offers, or."
+".."
+msgstr ""
+
+#: ../admin/class-vpc-admin.php:797
+msgid "From $29"
+msgstr ""
+
+#: ../admin/class-vpc-duplicate.php:48
+msgid "Make a duplicate from this configuration"
+msgstr ""
+
+#: ../admin/class-vpc-duplicate.php:49
+msgid "Duplicate"
+msgstr ""
+
+#: ../admin/class-vpc-duplicate.php:75
+msgid "Copy to a new draft"
+msgstr ""
+
+#: ../admin/class-vpc-duplicate.php:86
+msgid "No configuration to duplicate has been supplied!"
+msgstr ""
+
+#: ../admin/class-vpc-duplicate.php:108
+msgid "Configuration creation failed, could not find original configuration:"
+msgstr ""
+
+#: ../admin/class-vpc-duplicate.php:134
+msgid "(Copy)"
+msgstr ""
+
+#: ../includes/class-vpc-config.php:77
+msgid "Preview"
+msgstr ""
+
+#: ../includes/class-vpc-config.php:81
+msgid "Configuration settings"
+msgstr ""
+
+#: ../includes/class-vpc-config.php:85
+msgid "Conditional rules"
+msgstr ""
+
+#: ../includes/class-vpc-config.php:105 ../includes/class-vpc-config.php:305
+msgid "Default"
+msgstr ""
+
+#: ../includes/class-vpc-config.php:110
+msgid "Checkbox"
+msgstr ""
+
+#: ../includes/class-vpc-config.php:111
+msgid "Radio"
+msgstr ""
+
+#: ../includes/class-vpc-config.php:118
+msgid "Skin"
+msgstr ""
+
+#: ../includes/class-vpc-config.php:124
+msgid "Editor look and feel."
+msgstr ""
+
+#: ../includes/class-vpc-config.php:128
+msgid "Components default aspect"
+msgstr ""
+
+#: ../includes/class-vpc-config.php:132
+msgid "Opened"
+msgstr ""
+
+#: ../includes/class-vpc-config.php:133
+msgid "Closed"
+msgstr ""
+
+#: ../includes/class-vpc-config.php:137
+msgid ""
+"Wether or not all components in the configuration should be opened or closed "
+"when the editor is loaded."
+msgstr ""
+
+#: ../includes/class-vpc-config.php:141
+msgid "Components behavior on click"
+msgstr ""
+
+#: ../includes/class-vpc-config.php:145
+msgid "Leave others components opened"
+msgstr ""
+
+#: ../includes/class-vpc-config.php:146
+msgid "Close others components"
+msgstr ""
+
+#: ../includes/class-vpc-config.php:150
+msgid "What to do when the user clicks on a component."
+msgstr ""
+
+#: ../includes/class-vpc-config.php:174 ../includes/class-vpc-config.php:256
+msgid "ID"
+msgstr ""
+
+#: ../includes/class-vpc-config.php:181 ../includes/class-vpc-config.php:233
+msgid "Name"
+msgstr ""
+
+#: ../includes/class-vpc-config.php:185
+msgid "Component name"
+msgstr ""
+
+#: ../includes/class-vpc-config.php:189
+msgid "Behaviour"
+msgstr ""
+
+#: ../includes/class-vpc-config.php:198 ../includes/class-vpc-config.php:221
+msgid "Icon"
+msgstr ""
+
+#: ../includes/class-vpc-config.php:204
+msgid "Component icon"
+msgstr ""
+
+#: ../includes/class-vpc-config.php:209
+msgid "Image"
+msgstr ""
+
+#: ../includes/class-vpc-config.php:241
+msgid "Group"
+msgstr ""
+
+#: ../includes/class-vpc-config.php:249
+msgid "Description"
+msgstr ""
+
+#: ../includes/class-vpc-config.php:266
+msgid "Price"
+msgstr ""
+
+#: ../includes/class-vpc-config.php:296
+msgid "Product / variation ID"
+msgstr ""
+
+#: ../includes/class-vpc-config.php:317 ../includes/class-vpc-config.php:326
+msgid "Options"
+msgstr ""
+
+#: ../includes/class-vpc-config.php:322 ../includes/class-vpc-config.php:336
+msgid "Component options"
+msgstr ""
+
+#: ../includes/class-vpc-config.php:325
+msgid "Manage options"
+msgstr ""
+
+#: ../includes/class-vpc-config.php:327
+msgid "Add option"
+msgstr ""
+
+#: ../includes/class-vpc-config.php:331
+msgid "Components"
+msgstr ""
+
+#: ../includes/class-vpc-config.php:339
+msgid "Add component"
+msgstr ""
+
+#: ../includes/class-vpc-config.php:414
+msgid "Is selected"
+msgstr ""
+
+#: ../includes/class-vpc-config.php:415
+msgid "is deselected"
+msgstr ""
+
+#: ../includes/class-vpc-config.php:419 ../includes/class-vpc-config.php:599
+msgid "Option"
+msgstr ""
+
+#: ../includes/class-vpc-config.php:420
+msgid "Component"
+msgstr ""
+
+#: ../includes/class-vpc-config.php:424
+msgid "Show"
+msgstr ""
+
+#: ../includes/class-vpc-config.php:425
+msgid "Hide"
+msgstr ""
+
+#: ../includes/class-vpc-config.php:426
+msgid "Select"
+msgstr ""
+
+#: ../includes/class-vpc-config.php:434
+msgid "Remove rule"
+msgstr ""
+
+#: ../includes/class-vpc-config.php:484
+msgid "Enable Conditional Logic"
+msgstr ""
+
+#: ../includes/class-vpc-config.php:508
+msgid "Rules"
+msgstr ""
+
+#: ../includes/class-vpc-config.php:560
+msgid "IF"
+msgstr ""
+
+#: ../includes/class-vpc-config.php:590
+msgid "Action"
+msgstr ""
+
+#: ../includes/class-vpc-config.php:593
+msgid "Scope"
+msgstr ""
+
+#: ../includes/class-vpc-config.php:596
+msgid "Apply on"
+msgstr ""
+
+#: ../includes/class-vpc-config.php:602
+msgid "Status"
+msgstr ""
+
+#: ../includes/class-vpc-config.php:617
+msgid "Configuration"
+msgstr ""
+
+#: ../includes/functions.php:27
+msgid "Total:"
+msgstr ""
+
+#: ../includes/functions.php:42
+msgid "Add to cart"
+msgstr ""
+
+#: ../includes/functions.php:316
+msgid "Single choice"
+msgstr ""
+
+#: ../includes/functions.php:317
+msgid "Multiple choices"
+msgstr ""
+
+#: ../includes/updaters/class-wpd-updater.php:53
+msgid "Downloading package from envato market..."
+msgstr ""
+
+#: ../includes/updaters/class-wpd-updater.php:58
+msgid "Error! Can't connect to filesystem"
+msgstr ""
+
+#: ../includes/updaters/class-wpd-updater.php:65
+msgid ""
+"To receive automatic updates license activation is required. Please visit <a "
+"href=\""
+msgstr ""
+
+#: ../includes/updaters/class-wpd-updater.php:70
+msgid "Error! Envato API error"
+msgstr ""
+
+#: ../includes/updaters/class-wpd-updater.php:93
+msgid "Error on unzipping package"
+msgstr ""
+
+#: ../includes/updaters/class-wpd-updating-manager.php:198
+msgid "Download new version from CodeCanyon."
+msgstr ""
+
+#: ../includes/updaters/class-wpd-updating-manager.php:200
+msgid "Update Visual Products Configurator now."
+msgstr ""
+
+#: ../includes/utils.php:505
+msgid "Add"
+msgstr ""
+
+#: ../public/class-vpc-public.php:114
+msgid ""
+"Looks like you're trying to access the configuration page directly. This "
+"page can only be accessed by clicking on the Build your own button from the "
+"product or the shop page."
+msgstr ""
+
+#: ../public/class-vpc-public.php:380
+msgid "Build your own"
+msgstr ""
+
+#: ../public/class-vpc-public.php:423
+msgid ""
+"Looks like you're trying to access the configuration page directly. This "
+"page can only be accessed by clicking on Build your own button from the "
+"product or the shop page."
+msgstr ""
+
+#: ../public/class-vpc-public.php:425
+msgid "This product is not purchasable."
+msgstr ""
+
+#: ../public/class-vpc-public.php:472
+msgid "You can not add that ammount of product to the cart"
+msgstr ""
+
+#: ../public/class-vpc-public.php:494
+msgid "Product successfully added to basket."
+msgstr ""
+
+#: ../public/class-vpc-public.php:494
+msgid "View Cart"
+msgstr ""
+
+#: ../public/class-vpc-public.php:497
+msgid "A problem occured. Please try again."
+msgstr ""
+
+#: ../public/class-vpc-public.php:864
+msgid "You can not remove the secondary product"
+msgstr ""
+
+#: ../skins/class-vpc-default-skin.php:40
+msgid "No valid configuration linked to this product."
+msgstr ""
+
+#: ../skins/class-vpc-default-skin.php:123
+msgid "none"
+msgstr ""
+
+#: ../skins/class-vpc-default-skin.php:133
+msgid ""
+"No option detected for the component. You need at least one option per "
+"component."
+msgstr ""
+
+msgid "SHOP NOW"
+msgstr ""
+
+msgid "Before placing your order, please confirm your sole and strap size"
+msgstr ""
